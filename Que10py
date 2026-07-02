@@ -1,0 +1,41 @@
+import numpy as np 
+
+try:
+    n = int(input("Enter how many random numbers you want to generate: "))    #take input from user
+
+    if n <= 0:
+
+        print("Please enter a positive number greater than 0.")
+    else:
+        arr = np.random.randint(10, 101, n)   # Generate random numbers between 10 & 100
+
+        print("\nGenerated Array:")
+        print(arr)
+
+        #Basic Statistics
+        print("\nMean:", np.mean(arr))
+        print("Median:", np.median(arr))
+        print("Standard Deviation:", np.std(arr))
+        print("Minimum Value:", np.min(arr))
+        print("Maximum Value:", np.max(arr))
+
+        print("\n2D Reshape (if possible):")    #Try reshape into 2D array if possible
+
+        try:
+            rows = int(np.sqrt(n))   #Find the number of rows for reshape
+            cols = n // rows
+
+            if rows * cols == n:
+                matrix = arr.reshape(rows, cols)
+                print(matrix)
+
+                print("\nRow-wise Sum:")    # Row-wise sum
+                print(np.sum(matrix, axis=1))
+            else:
+                print("Cannot reshape into perfect 2D matrix.")
+
+        except Exception as e:
+            print("Reshape error:", e)
+
+except ValueError:
+    print("Invalid input! Please enter an integer.")
